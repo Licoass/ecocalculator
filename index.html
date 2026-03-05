@@ -28,80 +28,124 @@
 
     <main class="max-w-7xl mx-auto px-6 py-12">
         <header class="text-center mb-12">
-            <span class="text-[#81c744] font-bold text-[10px] uppercase tracking-[0.3em] mb-2 block">Eficiencia Inverter Pro</span>
-            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
-                Ahorre hasta un <span id="percent-display" class="text-[#81c744]">0%</span>
+            <span class="text-[#81c744] font-bold text-[10px] uppercase tracking-[0.3em] mb-2 block font-bold">Eficiencia Energética</span>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                Ahorre hasta un <span id="percent-display" class="text-[#81c744]">0%</span> con <br> Tecnología Inverter Pro
             </h1>
-            <p class="text-slate-500 mt-4 font-medium max-w-xl mx-auto">Compare la Serie ALEF vs FLEX y descubra su ahorro real mensual.</p>
         </header>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
             <div class="flat-card p-8 space-y-10">
                 <div class="flex items-center gap-3 pb-4 border-b border-slate-50">
                     <i data-lucide="sliders" class="text-[#1e73be] w-5 h-5"></i>
-                    <h2 class="font-bold text-slate-900 uppercase text-xs tracking-widest">Configuración</h2>
+                    <h2 class="font-bold text-slate-900 uppercase text-xs tracking-widest">Configurador</h2>
                 </div>
                 <div class="space-y-8">
                     <div>
-                        <div class="flex justify-between mb-4"><label class="text-xs font-bold text-slate-400 uppercase">Área</label><span id="roomSize-val" class="font-bold text-xl text-[#1e73be]">20 m²</span></div>
+                        <div class="flex justify-between mb-4"><label class="text-xs font-bold text-slate-400 uppercase tracking-widest">Área (m²)</label><span id="roomSize-val" class="font-bold text-xl text-[#1e73be]">20 m²</span></div>
                         <input type="range" id="roomSize" min="10" max="60" value="20" class="w-full">
                     </div>
                     <div>
-                        <div class="flex justify-between mb-4"><label class="text-xs font-bold text-slate-400 uppercase">Uso Diario</label><span id="usageHours-val" class="font-bold text-xl text-[#1e73be]">8 h</span></div>
+                        <div class="flex justify-between mb-4"><label class="text-xs font-bold text-slate-400 uppercase tracking-widest">Uso Diario (h)</label><span id="usageHours-val" class="font-bold text-xl text-[#1e73be]">8 h</span></div>
                         <input type="range" id="usageHours" min="1" max="24" value="8" class="w-full">
                     </div>
                 </div>
                 <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-center gap-4">
                     <div class="bg-white p-2 rounded-lg shadow-sm text-[#81c744]"><i data-lucide="zap" class="w-5 h-5"></i></div>
-                    <p id="btu-display" class="font-bold text-sm text-slate-700">18,000 BTU</p>
+                    <div>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase">Capacidad Sugerida</p>
+                        <p id="btu-display" class="font-bold text-sm text-slate-700">18,000 BTU</p>
+                    </div>
                 </div>
             </div>
 
             <div class="lg:col-span-2 space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="flat-card p-8 border-l-4 border-slate-200">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase mb-4 tracking-widest">Convencional FLEX</p>
-                        <p id="costConv" class="text-3xl font-extrabold text-slate-900">₡0</p>
-                        <p class="text-[10px] text-slate-400 font-medium mt-2">Gasto mensual estimado</p>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase mb-4 tracking-widest">Serie FLEX</p>
+                        <h3 class="font-bold text-lg text-slate-900 mb-8 tracking-tight">Equipo Convencional</h3>
+                        <div class="space-y-1">
+                            <p class="text-[10px] text-slate-500 font-medium">Recibo Mensual Estimado</p>
+                            <p id="costConv" class="text-4xl font-extrabold text-slate-900">₡0</p>
+                        </div>
                     </div>
-                    <div class="flat-card p-8 border-l-4 border-[#1e73be] bg-slate-900">
-                        <p class="text-[10px] font-bold text-blue-300 uppercase mb-4 tracking-widest">Inverter ALEF</p>
-                        <p id="costInv" class="text-3xl font-extrabold text-white">₡0</p>
-                        <p class="text-[10px] text-blue-300 font-medium mt-2">Gasto mensual estimado</p>
+
+                    <div class="flat-card p-8 border-l-4 border-[#1e73be] shadow-lg shadow-blue-50">
+                        <p class="text-[10px] font-bold text-[#1e73be] uppercase mb-4 tracking-widest">Serie ALEF R32</p>
+                        <h3 class="font-bold text-lg text-[#1e73be] mb-8 tracking-tight">Tecnología Inverter Pro</h3>
+                        <div class="space-y-1">
+                            <p class="text-[10px] text-[#1e73be] font-medium opacity-80">Recibo Mensual Estimado</p>
+                            <p id="costInv" class="text-4xl font-extrabold text-[#1e73be]">₡0</p>
+                        </div>
                     </div>
                 </div>
-                <div class="bg-[#81c744] p-8 rounded-[32px] text-white flex flex-col md:flex-row justify-between items-center shadow-lg shadow-green-100">
-                    <div>
-                        <p class="text-[10px] font-bold uppercase tracking-widest opacity-80 mb-1">Ahorro Anual Estimado</p>
-                        <h2 id="savingYearly" class="text-5xl font-extrabold tracking-tighter">₡0</h2>
+
+                <div class="bg-white p-8 md:p-10 rounded-3xl border border-slate-100 shadow-sm flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="flex items-center gap-5">
+                        <div class="bg-green-50 p-4 rounded-2xl text-[#81c744]"><i data-lucide="trending-down" class="w-10 h-10"></i></div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 mb-1">Su Ahorro Anual Estimado</h4>
+                            <p class="text-slate-500 text-xs font-medium">Invierta inteligentemente en climatización.</p>
+                        </div>
                     </div>
-                    <a id="main-whatsapp" href="#" target="_blank" class="mt-6 md:mt-0 bg-white text-[#81c744] px-8 py-3 rounded-full font-bold text-sm flex items-center gap-2 hover:scale-105 transition-all">
-                        Consultar con Experto <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
+                    <p id="savingYearly" class="text-5xl md:text-6xl font-extrabold text-[#81c744] tracking-tighter">₡0</p>
                 </div>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div class="flat-card p-8 mb-8">
+            <h4 class="font-bold text-lg text-slate-900 mb-2">Comparativa de Consumo Inverter vs Convencional</h4>
+            <p class="text-xs text-slate-500 font-medium mb-8">Observe cómo el equipo Inverter mantiene un consumo bajo y estable.</p>
+            <div class="w-full h-56 rounded-2xl relative overflow-hidden">
+                <svg viewBox="0 0 800 220" class="w-full h-full">
+                    <line x1="0" y1="110" x2="800" y2="110" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="5" />
+                    <path d="M0 180 L80 40 L160 40 L240 180 L320 180 L400 40 L480 40 L560 180 L640 180 L720 40 L800 40" fill="none" stroke="#cbd5e1" stroke-width="3" stroke-opacity="0.8" />
+                    <path d="M0 180 Q100 80 200 110 L800 110" fill="none" stroke="#1e73be" stroke-width="5" />
+                    <circle cx="80" cy="40" r="4" fill="#ef4444" />
+                    <text x="88" y="35" font-size="10" fill="#ef4444" font-weight="black">PICO DE ARRANQUE</text>
+                    <text x="500" y="130" font-size="10" fill="#1e73be" font-weight="black">CARGA BAJA CONSTANTE</text>
+                </svg>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 py-8 border-t border-slate-100">
+            <div class="flex items-center gap-3">
+                <i data-lucide="leaf" class="w-5 h-5 text-[#81c744]"></i>
+                <span class="text-[11px] font-bold text-slate-600 uppercase tracking-widest">Refrigerante R32 Eco</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <i data-lucide="volume-x" class="w-5 h-5 text-[#81c744]"></i>
+                <span class="text-[11px] font-bold text-slate-600 uppercase tracking-widest">Ultra Silencioso</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <i data-lucide="shield-check" class="w-5 h-5 text-[#81c744]"></i>
+                <span class="text-[11px] font-bold text-slate-600 uppercase tracking-widest">Protección Voltaje</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <i data-lucide="wrench" class="w-5 h-5 text-[#81c744]"></i>
+                <span class="text-[11px] font-bold text-slate-600 uppercase tracking-widest">Larga Vida Útil</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-16">
             <div class="bg-blue-50 p-8 rounded-3xl border border-blue-100 flex gap-5">
                 <div class="text-[#1e73be] shrink-0"><i data-lucide="wrench" class="w-8 h-8"></i></div>
                 <div>
                     <h4 class="font-bold text-slate-900 mb-2">Mantenimiento Vital</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed font-medium">Recomendamos mantenimiento profesional <span class="text-[#1e73be] font-bold">cada 3 a 6 meses</span> para mantener la eficiencia.</p>
+                    <p class="text-sm text-slate-600 leading-relaxed font-medium">Recomendamos realizar mantenimiento profesional <span class="text-[#1e73be] font-bold">cada 3 a 6 meses</span> para mantener el ahorro.</p>
                 </div>
             </div>
-            <div class="bg-green-50 p-8 rounded-3xl border border-green-100 flex gap-5">
-                <div class="text-[#81c744] shrink-0"><i data-lucide="shield-check" class="w-8 h-8"></i></div>
-                <div>
-                    <h4 class="font-bold text-slate-900 mb-2">Garantía Eco Ingeniería</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed font-medium">Equipos diseñados para las condiciones eléctricas de Costa Rica.</p>
-                </div>
+            <div class="bg-white p-8 rounded-3xl border border-slate-100 flex flex-col items-center gap-4 shadow-sm">
+                <h4 class="font-bold text-slate-900">¿Desea una asesoría personalizada?</h4>
+                <a id="main-whatsapp" href="#" target="_blank" class="w-full bg-[#1e73be] text-white py-3 rounded-full font-bold text-sm flex items-center justify-center gap-2">
+                    Consultar con Experto <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
             </div>
         </div>
 
-        <footer class="text-center pt-12 border-t border-slate-100">
-            <img src="14.png" alt="Eco Ingeniería" class="h-8 mx-auto grayscale opacity-40 mb-4">
-            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.4em]">Eco Ingeniería CR • 2026</p>
+        <footer class="text-center pt-8 border-t border-slate-100 space-y-4">
+            <img src="14.png" alt="Eco Ingeniería" class="h-8 mx-auto grayscale opacity-40">
+            <p class="text-[9px] font-bold text-slate-400 uppercase tracking-[0.4em]">© Eco Ingeniería Costa Rica | Climatización Profesional</p>
         </footer>
     </main>
 
@@ -116,15 +160,13 @@
         const costInvDisplay = document.getElementById('costInv');
         const savingYearlyDisplay = document.getElementById('savingYearly');
         const percentDisplay = document.getElementById('percent-display');
-        
-        // Elementos de los enlaces de WhatsApp
         const navWhatsapp = document.getElementById('nav-whatsapp');
         const mainWhatsapp = document.getElementById('main-whatsapp');
 
         function updateCalculations() {
             const roomSize = parseInt(roomSizeInput.value);
             const usageHours = parseInt(usageHoursInput.value);
-            const rate = 95; 
+            const rate = 95;
 
             roomSizeVal.innerText = `${roomSize} m²`;
             usageHoursVal.innerText = `${usageHours} h`;
@@ -143,7 +185,6 @@
             const current = specs[btu];
             const kwhInv = (current.wattsInv * usageHours * 30 * 0.55) / 1000;
             const kwhConv = (current.wattsConv * usageHours * 30 * 0.85) / 1000;
-
             const costInv = Math.round(kwhInv * rate);
             const costConv = Math.round(kwhConv * rate);
             const savingYearly = (costConv - costInv) * 12;
@@ -154,11 +195,9 @@
             savingYearlyDisplay.innerText = `₡${savingYearly.toLocaleString('es-CR')}`;
             percentDisplay.innerText = `${percent}%`;
 
-            // ACTUALIZACIÓN DINÁMICA DEL MENSAJE DE WHATSAPP
             const baseMsg = `Hola Eco ingenieria CR usé la calculadora y me gustaría cotizar el equipo de ${btuFormatted} BTU`;
             const encodedMsg = encodeURIComponent(baseMsg);
             const whatsappUrl = `https://wa.me/50670320662?text=${encodedMsg}`;
-            
             navWhatsapp.href = whatsappUrl;
             mainWhatsapp.href = whatsappUrl;
         }
