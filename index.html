@@ -7,45 +7,64 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* Importamos la fuente Plus Jakarta Sans */
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
         
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #f8fafc; /* Gris muy claro de fondo */
-            scroll-behavior: smooth; /* Desplazamiento suave para anchors */
+            background-color: #f8fafc;
+            scroll-behavior: smooth;
         }
 
-        /* Tarjeta flat profesional */
         .flat-card { 
             background: #ffffff; 
             border: 1px solid #f1f5f9; 
             border-radius: 24px; 
-            transition: transform 0.2s ease, shadow-lg 0.2s ease;
+            transition: transform 0.2s ease;
         }
         .flat-card:hover { transform: translateY(-3px); }
 
-        /* Sliders personalizados */
+        /* Sliders mejorados para móvil */
         input[type=range] {
             -webkit-appearance: none;
+            appearance: none;
             background: transparent;
+            width: 100%;
+            padding: 10px 0;
+            cursor: pointer;
         }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+        }
+        
         input[type=range]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            height: 18px;
-            width: 18px;
+            appearance: none;
+            height: 26px;
+            width: 26px;
             border-radius: 50%;
-            background: #1e73be; /* Azul marca */
-            cursor: pointer;
-            border: 3px solid #ffffff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-top: -7px; 
+            background: #1e73be;
+            border: 4px solid #ffffff;
+            box-shadow: 0 2px 8px rgba(30,115,190,0.35);
+            margin-top: -10px;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
-        input[type=range]::-webkit-slider-runnable-track {
-            width: 100%;
-            height: 4px;
-            background: #e2e8f0;
-            border-radius: 2px;
+        
+        input[type=range]::-webkit-slider-thumb:active {
+            transform: scale(1.2);
+            box-shadow: 0 4px 16px rgba(30,115,190,0.5);
+        }
+
+        /* Animación de números fluida */
+        .animated-number {
+            transition: opacity 0.15s ease, transform 0.15s ease;
+            display: inline-block;
+        }
+        .animated-number.updating {
+            opacity: 0;
+            transform: translateY(-6px);
         }
     </style>
 </head>
@@ -55,10 +74,12 @@
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <img src="14.png" alt="Eco Ingeniería" class="h-10 md:h-12 object-contain">
             <div class="flex items-center gap-3">
-                <a href="https://catalogoecoingenieria.my.canva.site/catalogomini" target="_blank" class="text-xs font-bold bg-slate-100 text-slate-700 px-6 py-2.5 rounded-full flex items-center gap-2 hover:bg-slate-200 transition-all">
+                <a href="https://catalogoecoingenieria.my.canva.site/catalogomini" target="_blank"
+                   class="text-xs font-bold bg-slate-100 text-slate-700 px-6 py-2.5 rounded-full flex items-center gap-2 hover:bg-slate-200 transition-all">
                     <i data-lucide="download" class="w-4 h-4 text-slate-400"></i> Catálogo
                 </a>
-                <a id="nav-whatsapp" href="#" target="_blank" class="text-xs font-bold bg-[#1e73be] text-white px-6 py-2.5 rounded-full flex items-center gap-2 hover:bg-[#155a96] transition-all">
+                <a id="nav-whatsapp" href="#" target="_blank"
+                   class="text-xs font-bold bg-[#1e73be] text-white px-6 py-2.5 rounded-full flex items-center gap-2 hover:bg-[#155a96] transition-all">
                     <i data-lucide="message-circle" class="w-4 h-4"></i> Asesoría
                 </a>
             </div>
@@ -71,7 +92,9 @@
             <header class="text-center mb-16 space-y-4">
                 <span class="text-[#81c744] font-extrabold text-[11px] uppercase tracking-[0.3em] mb-2 block">Eco Ingeniería CR</span>
                 <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                    Optimice su climatización y ahorre hasta <span id="percent-display" class="text-[#81c744] text-5xl md:text-6xl tracking-tighter">0%</span> de energía.
+                    Optimice su climatización y ahorre hasta
+                    <span id="percent-display" class="animated-number text-[#81c744] text-5xl md:text-6xl tracking-tighter">0%</span>
+                    de energía.
                 </h1>
                 <p class="text-slate-500 max-w-2xl mx-auto font-medium leading-relaxed">
                     Utilice nuestra calculadora profesional para comparar la eficiencia de la Serie ALEF (Inverter R32 Pro) frente a la Serie FLEX (Convencional On/Off).
@@ -89,18 +112,28 @@
                     <div class="space-y-10 flex-grow">
                         <div>
                             <div class="flex justify-between items-end mb-4">
-                                <label class="text-xs font-bold text-slate-800 uppercase tracking-widest flex items-center gap-2">Área a Climatizar</label>
-                                <span id="roomSize-val" class="font-bold text-2xl text-[#1e73be]">5 m²</span>
+                                <label class="text-xs font-bold text-slate-800 uppercase tracking-widest">Área a Climatizar</label>
+                                <span id="roomSize-val" class="animated-number font-bold text-2xl text-[#1e73be]">5 m²</span>
                             </div>
-                            <input type="range" id="roomSize" min="5" max="60" value="5" class="w-full h-1.5 accent-[#1e73be]">
+                            <div class="py-1">
+                                <input type="range" id="roomSize" min="5" max="60" value="5" class="w-full accent-[#1e73be]">
+                            </div>
+                            <div class="flex justify-between text-[10px] text-slate-400 font-semibold mt-1">
+                                <span>5 m²</span><span>60 m²</span>
+                            </div>
                         </div>
 
                         <div>
                             <div class="flex justify-between items-end mb-4">
-                                <label class="text-xs font-bold text-slate-800 uppercase tracking-widest flex items-center gap-2">Uso Diario Estimado</label>
-                                <span id="usageHours-val" class="font-bold text-2xl text-[#1e73be]">1 h</span>
+                                <label class="text-xs font-bold text-slate-800 uppercase tracking-widest">Uso Diario Estimado</label>
+                                <span id="usageHours-val" class="animated-number font-bold text-2xl text-[#1e73be]">1 h</span>
                             </div>
-                            <input type="range" id="usageHours" min="1" max="24" value="1" class="w-full h-1.5 accent-[#1e73be]">
+                            <div class="py-1">
+                                <input type="range" id="usageHours" min="1" max="24" value="1" class="w-full accent-[#1e73be]">
+                            </div>
+                            <div class="flex justify-between text-[10px] text-slate-400 font-semibold mt-1">
+                                <span>1 h</span><span>24 h</span>
+                            </div>
                         </div>
                     </div>
 
@@ -110,7 +143,7 @@
                         </div>
                         <div>
                             <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Capacidad Sugerida</p>
-                            <p id="btu-display" class="font-extrabold text-sm text-slate-800">12,000 BTU</p>
+                            <p id="btu-display" class="animated-number font-extrabold text-sm text-slate-800">12,000 BTU</p>
                         </div>
                     </div>
                 </div>
@@ -118,7 +151,6 @@
                 <div class="lg:col-span-8 flex flex-col gap-8 h-full">
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
-                        
                         <div class="flat-card p-8 border-l-4 border-slate-200 bg-slate-100/50 text-slate-900 flex flex-col justify-between">
                             <div>
                                 <p class="text-[10px] font-bold text-slate-400 uppercase mb-3 tracking-widest">Serie FLEX</p>
@@ -126,7 +158,7 @@
                             </div>
                             <div class="space-y-1.5">
                                 <p class="text-[10px] text-slate-600 font-semibold uppercase tracking-wider">Recibo Mensual Estimado</p>
-                                <p id="costConv" class="text-4xl font-extrabold text-slate-900">₡0</p>
+                                <p id="costConv" class="animated-number text-4xl font-extrabold text-slate-900">₡0</p>
                             </div>
                         </div>
 
@@ -137,30 +169,29 @@
                             </div>
                             <div class="space-y-1.5">
                                 <p class="text-[10px] font-semibold uppercase tracking-wider opacity-80">Recibo Mensual Estimado</p>
-                                <p id="costInv" class="text-4xl font-extrabold text-white">₡0</p>
+                                <p id="costInv" class="animated-number text-4xl font-extrabold text-white">₡0</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-                        
                         <div class="flat-card p-8 flex justify-between items-center gap-4 border-l-8 border-[#81c744]">
                             <div class="flex items-center gap-4">
-                                <div class="bg-green-50 p-3 rounded-xl text-[#81c744] hidden md:block">
+                                <div class="bg-green-50 p-3 rounded-xl text-[#81c744] hidden xl:block">
                                     <i data-lucide="trending-down" class="w-8 h-8"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-slate-900 text-sm mb-1 tracking-tight">Su Ahorro Anual Estimado</h4>
-                                    <p class="text-slate-500 text-[11px] font-medium leading-relaxed">Cálculo basado en ₡95 / kWh.</p>
+                                    <h4 class="font-bold text-slate-900 text-sm mb-1 tracking-tight">Su Ahorro Anual</h4>
+                                    <p class="text-slate-500 text-[10px] font-medium leading-relaxed">Basado en ₡95 / kWh.</p>
                                 </div>
                             </div>
-                            <p id="savingYearly" class="text-5xl font-extrabold text-[#81c744] tracking-tighter">₡0</p>
+                            <p id="savingYearly" class="animated-number text-4xl lg:text-5xl font-extrabold text-[#81c744] tracking-tighter">₡0</p>
                         </div>
 
-                        <div class="flat-card p-6 flex flex-col items-center gap-4 shadow-sm">
+                        <div class="flat-card p-6 flex flex-col items-center justify-center gap-4 shadow-sm">
                             <h4 class="font-bold text-slate-900 text-sm tracking-tight text-center">Asesoría Profesional Personalizada</h4>
-                            <p class="text-xs text-slate-500 font-medium text-center">Contacte a un experto para validar su espacio y brindarle la mejor oferta para este equipo.</p>
-                            <a id="main-whatsapp" href="#" target="_blank" class="w-full bg-[#1e73be] text-white py-4 rounded-full font-bold text-sm flex items-center justify-center gap-3 hover:scale-[1.02] transition-all shadow-xl shadow-blue-100">
+                            <a id="main-whatsapp" href="#" target="_blank"
+                               class="w-full bg-[#1e73be] text-white py-4 rounded-full font-bold text-sm flex items-center justify-center gap-3 hover:scale-[1.02] transition-all shadow-xl shadow-blue-100">
                                 Hablar con un Experto <i data-lucide="message-circle" class="w-5 h-5"></i>
                             </a>
                         </div>
@@ -173,144 +204,12 @@
             <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-4 pb-6 border-b border-slate-50">
                 <div class="text-center md:text-left">
                     <h4 class="font-bold text-lg text-slate-900 uppercase">Análisis Técnico de Consumo</h4>
-                    <p class="text-xs text-slate-500 font-medium mt-1 uppercase tracking-widest">Respaldo técnico de eficiencia: Inverter Pro ALEF vs Convencional FLEX</p>
+                    <p class="text-xs text-slate-500 font-medium mt-1 uppercase tracking-widest">Respaldo técnico: Inverter Pro ALEF vs Convencional FLEX</p>
                 </div>
                 <div class="flex items-center gap-4 bg-slate-50 p-3 rounded-full border border-slate-100 text-[10px] font-bold uppercase tracking-wider text-slate-500">
                     <div class="flex items-center gap-2 text-[#1e73be]">
                         <div class="w-3 h-3 bg-[#1e73be] rounded-full"></div> Inverter ALEF R32
                     </div>
                     <div class="flex items-center gap-2">
-                        <div class="w-3 h-3 bg-slate-200 rounded-full border border-slate-300"></div> Convencional FLEX
+                        <div class="w-3 h-3 bg-slate-300 rounded-full border border-slate-300"></div> Convencional FLEX
                     </div>
-                </div>
-            </div>
-            
-            <div class="w-full h-56 rounded-2xl relative overflow-hidden">
-                <svg viewBox="0 0 800 220" class="w-full h-full">
-                    <line x1="0" y1="110" x2="800" y2="110" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="5" />
-                    <text x="10" y="100" font-size="10" fill="#94a3b8" font-weight="bold">TEMPERATURA DE CONFORT</text>
-                    
-                    <path d="M0 180 L80 40 L160 40 L240 180 L320 180 L400 40 L480 40 L560 180 L640 180 L720 40 L800 40" fill="none" stroke="#cbd5e1" stroke-width="3" stroke-opacity="0.8" />
-                    
-                    <path d="M0 180 Q100 80 200 110 L800 110" fill="none" stroke="#1e73be" stroke-width="5" />
-
-                    <circle cx="80" cy="40" r="4" fill="#ef4444" />
-                    <text x="88" y="35" font-size="10" fill="#ef4444" font-weight="black">PICO DE ARRANQUE EXCESIVO (Gasto energético innecesario)</text>
-                    
-                    <text x="500" y="130" font-size="10" fill="#1e73be" font-weight="black">MANTENIMIENTO DE CARGA BAJA CONSTANTE</text>
-                    <text x="500" y="145" font-size="9" fill="#1e73be" font-weight="medium" opacity="0.8">(RAZÓN DEL AHORRO DEL 38% - SERIE ALEF)</text>
-                </svg>
-            </div>
-        </section>
-
-        <div class="flat-card p-8 flex flex-col md:flex-row gap-6 items-center mb-16 bg-blue-50 border border-blue-100 shadow-sm shadow-blue-50">
-            <div class="text-[#1e73be] shrink-0 p-4 bg-white rounded-2xl shadow-sm border border-slate-50">
-                <i data-lucide="wrench" class="w-8 h-8"></i>
-            </div>
-            <div>
-                <h4 class="font-bold text-lg text-slate-900 mb-2">Mantenimiento Vital</h4>
-                <p class="text-sm text-slate-600 leading-relaxed font-medium">Recomendamos mantenimiento profesional preventivo <span class="text-[#1e73be] font-bold">cada 3 a 6 meses</span>. Un equipo limpio mantiene su eficiencia original SEER 17 y previene averías costosas.</p>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 py-8 border-t border-slate-100">
-            <div class="flex items-center gap-3"><i data-lucide="leaf" class="w-5 h-5 text-[#81c744]"></i><span class="text-[11px] font-bold text-slate-800 uppercase tracking-widest">Refrigerante R32</span></div>
-            <div class="flex items-center gap-3"><i data-lucide="volume-x" class="w-5 h-5 text-[#81c744]"></i><span class="text-[11px] font-bold text-slate-800 uppercase tracking-widest">Ultra Silencioso</span></div>
-            <div class="flex items-center gap-3"><i data-lucide="shield-check" class="w-5 h-5 text-[#81c744]"></i><span class="text-[11px] font-bold text-slate-800 uppercase tracking-widest">Protección Eléctrica</span></div>
-            <div class="flex items-center gap-3"><i data-lucide=" wrench" class="w-5 h-5 text-[#81c744]"></i><span class="text-[11px] font-bold text-slate-800 uppercase tracking-widest">Larga Vida Útil</span></div>
-        </div>
-
-        <footer class="text-center pt-8 border-t border-slate-100 space-y-4">
-            <img src="14.png" alt="Eco Ingeniería" class="h-8 mx-auto grayscale opacity-40 mb-3">
-            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.4em]">© ECO INGENIERÍA COSTA RICA | CLIMATIZACIÓN Y ENERGÍA SOLAR PROFESIONAL</p>
-        </footer>
-    </main>
-
-    <script>
-        // Inicializar iconos
-        lucide.createIcons();
-
-        // Elementos del DOM
-        const roomSizeInput = document.getElementById('roomSize');
-        const usageHoursInput = document.getElementById('usageHours');
-        const roomSizeVal = document.getElementById('roomSize-val');
-        const usageHoursVal = document.getElementById('usageHours-val');
-        const btuDisplay = document.getElementById('btu-display');
-        const costConvDisplay = document.getElementById('costConv');
-        const costInvDisplay = document.getElementById('costInv');
-        const savingYearlyDisplay = document.getElementById('savingYearly');
-        const percentDisplay = document.getElementById('percent-display');
-        
-        // Elementos de WhatsApp
-        const navWhatsapp = document.getElementById('nav-whatsapp');
-        const mainWhatsapp = document.getElementById('main-whatsapp');
-
-        // Función principal de cálculo
-        function updateCalculations() {
-            const roomSize = parseInt(roomSizeInput.value);
-            const usageHours = parseInt(usageHoursInput.value);
-            const rate = 95; // Tarifa eléctrica estándar Costa Rica
-
-            // Actualizar visualmente sliders (valores mínimos por defecto SOLICITADO)
-            roomSizeVal.innerText = `${roomSize} m²`;
-            usageHoursVal.innerText = `${usageHours} h`;
-
-            // Lógica de cálculo de BTUs necesarios (Mínimo de 5m2 SOLICITADO)
-            let btu = 12000;
-            if (roomSize <= 16) btu = 12000;
-            else if (roomSize <= 24) btu = 18000;
-            else if (roomSize <= 36) btu = 24000;
-            else btu = 36000;
-
-            const btuFormatted = btu.toLocaleString();
-            btuDisplay.innerText = `${btuFormatted} BTU`;
-
-            // Especificaciones técnicas de los equipos (Watts de consumo)
-            const specs = {
-                12000: { wattsInv: 1278, wattsConv: 1265 },
-                18000: { wattsInv: 1847, wattsConv: 1925 },
-                24000: { wattsInv: 2395, wattsConv: 2575 },
-                36000: { wattsInv: 4000, wattsConv: 4400 }
-            };
-
-            const current = specs[btu];
-
-            // Fórmulas de consumo energético (kW/h mensuales)
-            // Se asume 55% de carga para Inverter y 85% para Convencional por paradas/arrranques
-            const kwhInv = (current.wattsInv * usageHours * 30 * 0.55) / 1000;
-            const kwhConv = (current.wattsConv * usageHours * 30 * 0.85) / 1000;
-
-            // Fórmulas de costo monetario (₡ mensuales)
-            const costInv = Math.round(kwhInv * rate);
-            const costConv = Math.round(kwhConv * rate);
-
-            // Cálculo del ahorro anual
-            const savingYearly = (costConv - costInv) * 12;
-
-            // Cálculo del porcentaje de ahorro
-            const percent = Math.round(((costConv - costInv) / costConv) * 100);
-
-            // Inyectar resultados
-            costInvDisplay.innerText = `₡${costInv.toLocaleString('es-CR')}`;
-            costConvDisplay.innerText = `₡${costConv.toLocaleString('es-CR')}`;
-            savingYearlyDisplay.innerText = `₡${savingYearly.toLocaleString('es-CR')}`;
-            percentDisplay.innerText = `${percent}%`;
-
-            // ACTUALIZACIÓN DINÁMICA DEL MENSAJE DE WHATSAPP (Automatización SOLICITADO)
-            const baseMsg = `Hola Eco ingeniería CR, usé la calculadora para un área de ${roomSize}m². Me gustaría recibir una asesoría personalizada para el equipo recomendado de ${btuFormatted} BTU.`;
-            const encodedMsg = encodeURIComponent(baseMsg);
-            const whatsappUrl = `https://wa.me/50670320662?text=${encodedMsg}`;
-            
-            navWhatsapp.href = whatsappUrl;
-            mainWhatsapp.href = whatsappUrl;
-        }
-
-        // Eventos
-        roomSizeInput.addEventListener('input', updateCalculations);
-        usageHoursInput.addEventListener('input', updateCalculations);
-        
-        // Ejecución inicial al cargar la página
-        updateCalculations();
-    </script>
-</body>
-</html>
