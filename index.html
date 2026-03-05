@@ -37,30 +37,30 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
             <div class="flat-card p-8 space-y-10">
                 <div class="flex items-center gap-3 pb-4 border-b border-slate-50">
-                    <i data-lucide="sliders" class="text-[#1e73be] w-5 h-5"></i>
-                    <h2 class="font-bold text-slate-900 uppercase text-xs tracking-widest text-slate-800">Calculadora</h2>
+                    <i data-lucide="calculator" class="text-[#1e73be] w-5 h-5"></i>
+                    <h2 class="font-bold text-slate-900 uppercase text-xs tracking-widest">Calculadora</h2>
                 </div>
                 <div class="space-y-8">
                     <div>
                         <div class="flex justify-between items-end mb-4">
-                            <label class="text-xs font-bold text-slate-800 uppercase tracking-widest flex items-center gap-2">Área (m²)</label>
-                            <span id="roomSize-val" class="font-bold text-2xl text-[#1e73be]">20 m²</span>
+                            <label class="text-xs font-bold text-slate-800 uppercase tracking-widest">Área (m²)</label>
+                            <span id="roomSize-val" class="font-bold text-2xl text-[#1e73be]">5 m²</span>
                         </div>
-                        <input type="range" id="roomSize" min="10" max="60" value="20" class="w-full">
+                        <input type="range" id="roomSize" min="5" max="60" value="5" class="w-full">
                     </div>
                     <div>
                         <div class="flex justify-between items-end mb-4">
-                            <label class="text-xs font-bold text-slate-800 uppercase tracking-widest flex items-center gap-2">Uso Diario (h)</label>
-                            <span id="usageHours-val" class="font-bold text-2xl text-[#1e73be]">8 h</span>
+                            <label class="text-xs font-bold text-slate-800 uppercase tracking-widest">Uso Diario (h)</label>
+                            <span id="usageHours-val" class="font-bold text-2xl text-[#1e73be]">1 h</span>
                         </div>
-                        <input type="range" id="usageHours" min="1" max="24" value="8" class="w-full">
+                        <input type="range" id="usageHours" min="1" max="24" value="1" class="w-full">
                     </div>
                 </div>
                 <div class="p-4 bg-slate-50 rounded-2xl flex items-center gap-4 border border-slate-100">
                     <div class="bg-white p-2 rounded-lg shadow-sm text-[#81c744]"><i data-lucide="zap" class="w-5 h-5"></i></div>
                     <div>
                         <p class="text-[10px] font-bold text-slate-800 uppercase tracking-wider">Capacidad Sugerida</p>
-                        <p id="btu-display" class="font-bold text-sm text-slate-700">18,000 BTU</p>
+                        <p id="btu-display" class="font-bold text-sm text-slate-700">12,000 BTU</p>
                     </div>
                 </div>
             </div>
@@ -101,8 +101,8 @@
         <div class="flat-card p-8 mb-12">
             <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
                 <div>
-                    <h4 class="font-bold text-lg text-slate-900">Análisis Técnico de Consumo</h4>
-                    <p class="text-xs text-slate-500 font-medium mt-1">Descubra visualmente por qué Inverter Pro es más eficiente.</p>
+                    <h4 class="font-bold text-lg text-slate-900 uppercase">Análisis Técnico</h4>
+                    <p class="text-xs text-slate-500 font-medium mt-1">Comparativa de eficiencia Inverter vs Convencional</p>
                 </div>
                 <div class="flex items-center gap-4 bg-slate-50 p-3 rounded-full border border-slate-100 text-[10px] font-bold uppercase">
                     <div class="flex items-center gap-2 text-[#1e73be]"><div class="w-3 h-3 bg-[#1e73be] rounded-full"></div> Inverter ALEF</div>
@@ -121,10 +121,20 @@
             </div>
         </div>
 
-        <div class="flex justify-center mb-16">
-            <a id="main-whatsapp" href="#" target="_blank" class="w-full md:w-auto bg-[#1e73be] text-white px-12 py-5 rounded-full font-bold text-lg flex items-center justify-center gap-3 hover:scale-105 transition-all shadow-xl shadow-blue-200">
-                Consultar con Experto <i data-lucide="arrow-right"></i>
-            </a>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-16">
+            <div class="bg-blue-50 p-8 rounded-3xl border border-blue-100 flex gap-5">
+                <div class="text-[#1e73be] shrink-0"><i data-lucide="wrench" class="w-8 h-8"></i></div>
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-2">Mantenimiento Vital</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed font-medium">Recomendamos mantenimiento profesional <span class="text-[#1e73be] font-bold">cada 3 a 6 meses</span> para mantener el ahorro.</p>
+                </div>
+            </div>
+            <div class="bg-white p-8 rounded-3xl border border-slate-100 flex flex-col items-center gap-4 shadow-sm">
+                <h4 class="font-bold text-slate-900 tracking-tight text-center">¿Desea una asesoría personalizada?</h4>
+                <a id="main-whatsapp" href="#" target="_blank" class="w-full bg-[#1e73be] text-white py-4 rounded-full font-bold text-sm flex items-center justify-center gap-2 hover:scale-[1.02] transition-all">
+                    Consultar con Experto <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 py-8 border-t border-slate-100">
@@ -151,8 +161,6 @@
         const costInvDisplay = document.getElementById('costInv');
         const savingYearlyDisplay = document.getElementById('savingYearly');
         const percentDisplay = document.getElementById('percent-display');
-        
-        // Elementos de WhatsApp
         const navWhatsapp = document.getElementById('nav-whatsapp');
         const mainWhatsapp = document.getElementById('main-whatsapp');
 
@@ -164,7 +172,13 @@
             roomSizeVal.innerText = `${roomSize} m²`;
             usageHoursVal.innerText = `${usageHours} h`;
 
-            let btu = roomSize <= 16 ? 12000 : roomSize <= 24 ? 18000 : roomSize <= 36 ? 24000 : 36000;
+            // Lógica ajustada a mínimo de 5m2
+            let btu = 12000;
+            if (roomSize <= 16) btu = 12000;
+            else if (roomSize <= 24) btu = 18000;
+            else if (roomSize <= 36) btu = 24000;
+            else btu = 36000;
+
             const btuFormatted = btu.toLocaleString();
             btuDisplay.innerText = `${btuFormatted} BTU`;
 
@@ -178,7 +192,6 @@
             const current = specs[btu];
             const kwhInv = (current.wattsInv * usageHours * 30 * 0.55) / 1000;
             const kwhConv = (current.wattsConv * usageHours * 30 * 0.85) / 1000;
-
             const costInv = Math.round(kwhInv * rate);
             const costConv = Math.round(kwhConv * rate);
             const savingYearly = (costConv - costInv) * 12;
@@ -189,8 +202,8 @@
             savingYearlyDisplay.innerText = `₡${savingYearly.toLocaleString('es-CR')}`;
             percentDisplay.innerText = `${percent}%`;
 
-            // ACTUALIZACIÓN DINÁMICA DEL MENSAJE DE WHATSAPP REESTABLECIDA
-            const baseMsg = `Hola Eco ingenieria CR usé la calculadora y me gustaría cotizar el equipo de ${btuFormatted} BTU`;
+            // MENSAJE DINÁMICO MEJORADO
+            const baseMsg = `Hola Eco ingeniería CR, usé la calculadora para un área de ${roomSize}m². Me gustaría cotizar el equipo con la recomendación de ${btuFormatted} BTU.`;
             const encodedMsg = encodeURIComponent(baseMsg);
             const whatsappUrl = `https://wa.me/50670320662?text=${encodedMsg}`;
             
