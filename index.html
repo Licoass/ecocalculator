@@ -7,127 +7,201 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #ffffff; }
-        .glass-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 24px; transition: all 0.3s ease; }
-        .glass-card:hover { border-color: #81c744; }
-        input[type=range] { -webkit-appearance: none; background: #e2e8f0; height: 8px; border-radius: 10px; }
-        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 24px; width: 24px; border-radius: 50%; background: #1e73be; cursor: pointer; border: 4px solid #ffffff; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        /* Importamos una tipografía geométrica moderna */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+        
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: #f4f7f6; /* Gris muy claro de fondo para contraste */
+        }
+
+        /* Estilos personalizados para los sliders (barras de rango) */
+        input[type=range] {
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            border: 3px solid #1e73be; /* Azul de marca */
+            margin-top: -8px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #e2e8f0; /* Gris claro */
+            border-radius: 2px;
+        }
     </style>
 </head>
-<body class="text-slate-900">
+<body class="text-slate-800">
 
-    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <img src="14.png" alt="Eco Ingeniería" class="h-8 md:h-10 object-contain">
-            <a href="http://wa.me/50670320662" target="_blank" class="bg-[#1e73be] text-white px-6 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 hover:opacity-90 transition-all">
-                <i data-lucide="message-circle" class="w-4 h-4"></i> Asesoría
+    <nav class="bg-white border-b border-slate-100 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <img src="14.png" alt="Eco Ingeniería" class="h-10 md:h-12 object-contain">
+            
+            <a href="http://wa.me/50670320662" target="_blank" class="text-sm font-semibold bg-[#1e73be] text-white px-5 py-2.5 rounded-full flex items-center gap-2 hover:bg-[#155a96] transition-colors">
+                <i data-lucide="message-circle" class="w-4 h-4"></i> 
+                <span>Cotizar</span>
             </a>
         </div>
     </nav>
 
-    <main class="max-w-5xl mx-auto px-6 py-16">
-        <header class="text-center mb-20">
-            <span class="text-[#81c744] font-extrabold tracking-[0.2em] text-[10px] uppercase mb-4 block">Simulador Energético</span>
-            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
-                Optimice su consumo con <br><span class="text-[#1e73be]">Tecnología Inverter</span>
+    <main class="max-w-7xl mx-auto px-6 py-12 md:py-16">
+        
+        <header class="text-center mb-16 space-y-3">
+            <span class="inline-block bg-green-50 text-[#81c744] px-4 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">Eficiencia Energética</span>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+                Ahorre hasta un <span id="percent-display" class="text-[#81c744]">0%</span> con <br> Tecnología Inverter Pro
             </h1>
-            <p class="text-slate-500 text-lg max-w-xl mx-auto font-medium">
-                Compare el rendimiento de nuestra Serie ALEF frente a equipos tradicionales.
+            <p class="text-slate-500 max-w-2xl mx-auto font-medium">
+                Compare el rendimiento de la Serie ALEF frente a equipos convencionales y visualice su retorno de inversión.
             </p>
         </header>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            <div class="lg:col-span-5 space-y-10">
-                <div class="space-y-8">
-                    <div class="group">
-                        <div class="flex justify-between items-end mb-4">
-                            <label class="text-xs font-bold text-slate-400 uppercase tracking-widest">Área de la estancia</label>
-                            <span id="roomSize-val" class="text-3xl font-extrabold text-slate-900">20 m²</span>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            
+            <section class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm space-y-10 lg:col-span-1">
+                <div class="flex items-center gap-3 pb-4 border-b border-slate-100">
+                    <i data-lucide="settings-2" class="text-[#1e73be] w-6 h-6"></i>
+                    <h2 class="text-lg font-bold text-slate-900">Configurador</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <label class="text-sm font-semibold text-slate-500 flex items-center gap-2">
+                            <i data-lucide="home" class="w-4 h-4 text-slate-400"></i> Área de la Estancia
+                        </label>
+                        <span id="roomSize-val" class="font-bold text-2xl text-[#1e73be]">20 m²</span>
+                    </div>
+                    <input type="range" id="roomSize" min="10" max="60" value="20" class="w-full h-1 bg-slate-100 rounded-full accent-[#1e73be]">
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <label class="text-sm font-semibold text-slate-500 flex items-center gap-2">
+                            <i data-lucide="clock" class="w-4 h-4 text-slate-400"></i> Uso Diario Estimado
+                        </label>
+                        <span id="usageHours-val" class="font-bold text-2xl text-[#1e73be]">8 h</span>
+                    </div>
+                    <input type="range" id="usageHours" min="1" max="24" value="8" class="w-full h-1 bg-slate-100 rounded-full accent-[#1e73be]">
+                </div>
+
+                <div class="p-5 bg-slate-50 rounded-2xl flex items-center gap-4 border border-slate-100">
+                    <i data-lucide="zap" class="text-[#81c744] w-8 h-8"></i>
+                    <div>
+                        <p class="text-xs font-semibold text-slate-500 uppercase">Capacidad Sugerida</p>
+                        <p id="btu-display" class="text-lg font-bold text-slate-900">18,000 BTU</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="lg:col-span-2 space-y-8">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Serie FLEX</p>
+                        <h3 class="text-lg font-bold text-slate-900 mb-8">Equipo Convencional</h3>
+                        <div class="space-y-1">
+                            <p class="text-xs font-semibold text-slate-500">Recibo Mensual Estimado</p>
+                            <p id="costConv" class="text-4xl font-extrabold text-slate-900">₡0</p>
                         </div>
-                        <input type="range" id="roomSize" min="10" max="60" value="20" class="w-full">
                     </div>
 
-                    <div class="group">
-                        <div class="flex justify-between items-end mb-4">
-                            <label class="text-xs font-bold text-slate-400 uppercase tracking-widest">Uso diario estimado</label>
-                            <span id="usageHours-val" class="text-3xl font-extrabold text-slate-900">8 h</span>
+                    <div class="bg-[#1e73be] p-8 rounded-3xl text-white shadow-lg">
+                        <p class="text-xs font-semibold text-blue-100 uppercase tracking-wider mb-2">Serie ALEF R32</p>
+                        <h3 class="text-lg font-bold text-white mb-8">Tecnología Inverter Pro</h3>
+                        <div class="space-y-1">
+                            <p class="text-xs font-semibold text-blue-100">Recibo Mensual Estimado</p>
+                            <p id="costInv" class="text-4xl font-extrabold text-white">₡0</p>
                         </div>
-                        <input type="range" id="usageHours" min="1" max="24" value="8" class="w-full">
                     </div>
                 </div>
 
-                <div class="p-6 bg-slate-50 rounded-3xl border border-slate-100">
-                    <div class="flex items-center gap-4">
-                        <div class="bg-white p-3 rounded-2xl shadow-sm">
-                            <i data-lucide="zap" class="text-[#81c744] w-6 h-6"></i>
+                <div class="bg-white p-8 md:p-10 rounded-3xl border border-slate-100 shadow-sm flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="flex items-center gap-5">
+                        <div class="bg-green-50 p-4 rounded-2xl text-[#81c744]">
+                            <i data-lucide="trending-down" class="w-10 h-10"></i>
                         </div>
                         <div>
-                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Capacidad Sugerida</p>
-                            <p id="btu-display" class="text-xl font-extrabold text-slate-900">18,000 BTU</p>
+                            <h4 class="text-lg font-bold text-slate-900">Su Ahorro Anual Estimado</h4>
+                            <p class="text-slate-500 font-medium">Invierta inteligentemente en climatización.</p>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="lg:col-span-7 space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="glass-card p-8">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase mb-6 tracking-widest">Convencional</p>
-                        <p id="costConv" class="text-3xl font-extrabold text-slate-400">₡0</p>
-                        <p class="text-xs font-medium text-slate-400 mt-2">Gasto mensual aprox.</p>
-                    </div>
-                    <div class="bg-[#1e73be] p-8 rounded-[24px] text-white">
-                        <p class="text-[10px] font-bold text-blue-200 uppercase mb-6 tracking-widest">Inverter ALEF</p>
-                        <p id="costInv" class="text-3xl font-extrabold">₡0</p>
-                        <p id="percent-display" class="text-xs font-bold text-[#81c744] mt-2">Ahorro del 0%</p>
-                    </div>
+                    <p id="savingYearly" class="text-5xl md:text-6xl font-extrabold text-[#81c744] tracking-tighter">₡0</p>
                 </div>
 
-                <div class="bg-[#81c744] p-10 rounded-[32px] text-white flex flex-col md:flex-row justify-between items-center gap-6">
-                    <div>
-                        <p class="text-[10px] font-bold uppercase tracking-[0.2em] opacity-80 mb-2">Ahorro Estimado Anual</p>
-                        <h2 id="savingYearly" class="text-5xl font-extrabold tracking-tighter">₡0</h2>
+                <section class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-slate-100">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="leaf" class="w-5 h-5 text-[#81c744]"></i>
+                        <span class="text-sm font-semibold text-slate-600">Refrigerante R32 Eco</span>
                     </div>
-                    <i data-lucide="trending-down" class="w-16 h-16 opacity-20 hidden md:block"></i>
-                </div>
-            </div>
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="volume-x" class="w-5 h-5 text-[#81c744]"></i>
+                        <span class="text-sm font-semibold text-slate-600">Ultra Silencioso</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-[#81c744]"></i>
+                        <span class="text-sm font-semibold text-slate-600">Protección Voltaje</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="wrench" class="w-5 h-5 text-[#81c744]"></i>
+                        <span class="text-sm font-semibold text-slate-600">Larga Vida Útil</span>
+                    </div>
+                </section>
+
+            </section>
         </div>
 
-        <footer class="mt-32 pt-12 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="flex items-center gap-4 text-slate-400">
-                <i data-lucide="shield-check" class="w-5 h-5"></i>
-                <p class="text-sm font-medium">Cálculos basados en estándares ASHRAE para Costa Rica.</p>
-            </div>
-            <div class="flex gap-4">
-                <a href="https://catalogoecoingenieria.my.canva.site/catalogomini" target="_blank" class="text-sm font-bold text-slate-900 hover:text-[#1e73be] transition-colors">Ver Catálogo</a>
-            </div>
+        <footer class="mt-24 pt-12 border-t border-slate-100 text-center space-y-6">
+            <img src="14.png" alt="Eco Ingeniería" class="h-10 mx-auto grayscale opacity-40">
+            <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest">© Eco Ingeniería Costa Rica | Climatización y Energía Solar Profesional</p>
         </footer>
+
     </main>
 
     <script>
+        // Inicializamos los iconos minimalistas
         lucide.createIcons();
+
+        // Elementos del DOM para interactuar
         const roomSizeInput = document.getElementById('roomSize');
         const usageHoursInput = document.getElementById('usageHours');
         const roomSizeVal = document.getElementById('roomSize-val');
         const usageHoursVal = document.getElementById('usageHours-val');
         const btuDisplay = document.getElementById('btu-display');
+        
         const costConvDisplay = document.getElementById('costConv');
         const costInvDisplay = document.getElementById('costInv');
         const savingYearlyDisplay = document.getElementById('savingYearly');
         const percentDisplay = document.getElementById('percent-display');
 
+        // Función principal de cálculo (Se mantiene la lógica original)
         function updateCalculations() {
             const roomSize = parseInt(roomSizeInput.value);
             const usageHours = parseInt(usageHoursInput.value);
-            const rate = 95; 
+            const rate = 95; // Tarifa eléctrica estándar Costa Rica
 
+            // Actualizar visualmente los valores de los sliders
             roomSizeVal.innerText = `${roomSize} m²`;
             usageHoursVal.innerText = `${usageHours} h`;
 
-            let btu = roomSize <= 16 ? 12000 : roomSize <= 24 ? 18000 : roomSize <= 36 ? 24000 : 36000;
+            // Lógica de cálculo de BTUs necesarios (750 BTU / m2)
+            let btu = 12000;
+            if (roomSize <= 16) btu = 12000;
+            else if (roomSize <= 24) btu = 18000;
+            else if (roomSize <= 36) btu = 24000;
+            else btu = 36000;
+
             btuDisplay.innerText = `${btu.toLocaleString()} BTU`;
 
+            // Especificaciones técnicas de los equipos (Watts de consumo)
             const specs = {
                 12000: { wattsInv: 1278, wattsConv: 1265 },
                 18000: { wattsInv: 1847, wattsConv: 1925 },
@@ -136,22 +210,34 @@
             };
 
             const current = specs[btu];
+
+            // Fórmulas de consumo energético (kW/h mensuales)
+            // Se asume 55% de carga para Inverter y 85% para Convencional por paradas/arrranques
             const kwhInv = (current.wattsInv * usageHours * 30 * 0.55) / 1000;
             const kwhConv = (current.wattsConv * usageHours * 30 * 0.85) / 1000;
 
+            // Fórmulas de costo monetario (₡ mensuales)
             const costInv = Math.round(kwhInv * rate);
             const costConv = Math.round(kwhConv * rate);
+
+            // Cálculo del ahorro anual
             const savingYearly = (costConv - costInv) * 12;
+
+            // Cálculo del porcentaje de ahorro
             const percent = Math.round(((costConv - costInv) / costConv) * 100);
 
+            // Inyectar los resultados en la interfaz con formato Costa Rica
             costInvDisplay.innerText = `₡${costInv.toLocaleString('es-CR')}`;
             costConvDisplay.innerText = `₡${costConv.toLocaleString('es-CR')}`;
             savingYearlyDisplay.innerText = `₡${savingYearly.toLocaleString('es-CR')}`;
-            percentDisplay.innerText = `Ahorro del ${percent}%`;
+            percentDisplay.innerText = `${percent}%`;
         }
 
+        // Eventos para detectar cambios en los sliders
         roomSizeInput.addEventListener('input', updateCalculations);
         usageHoursInput.addEventListener('input', updateCalculations);
+        
+        // Ejecución inicial al cargar la página
         updateCalculations();
     </script>
 </body>
