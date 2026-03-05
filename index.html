@@ -102,7 +102,7 @@
             <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
                 <div>
                     <h4 class="font-bold text-lg text-slate-900 uppercase">Análisis Técnico</h4>
-                    <p class="text-xs text-slate-500 font-medium mt-1">Comparativa de eficiencia Inverter vs Convencional</p>
+                    <p class="text-xs text-slate-500 font-medium mt-1">Comparativa de estabilidad vs picos de consumo</p>
                 </div>
                 <div class="flex items-center gap-4 bg-slate-50 p-3 rounded-full border border-slate-100 text-[10px] font-bold uppercase">
                     <div class="flex items-center gap-2 text-[#1e73be]"><div class="w-3 h-3 bg-[#1e73be] rounded-full"></div> Inverter ALEF</div>
@@ -116,7 +116,7 @@
                     <path d="M0 180 Q100 80 200 110 L800 110" fill="none" stroke="#1e73be" stroke-width="5" />
                     <circle cx="80" cy="40" r="4" fill="#ef4444" />
                     <text x="88" y="35" font-size="10" fill="#ef4444" font-weight="black">PICO DE ARRANQUE EXCESIVO</text>
-                    <text x="500" y="130" font-size="10" fill="#1e73be" font-weight="black">MANTENIMIENTO DE CARGA BAJA CONSTANTE</text>
+                    <text x="500" y="130" font-size="10" fill="#1e73be" font-weight="black">CARGA BAJA CONSTANTE</text>
                 </svg>
             </div>
         </div>
@@ -126,13 +126,14 @@
                 <div class="text-[#1e73be] shrink-0"><i data-lucide="wrench" class="w-8 h-8"></i></div>
                 <div>
                     <h4 class="font-bold text-slate-900 mb-2">Mantenimiento Vital</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed font-medium">Recomendamos mantenimiento profesional <span class="text-[#1e73be] font-bold">cada 3 a 6 meses</span> para mantener el ahorro.</p>
+                    <p class="text-sm text-slate-600 leading-relaxed font-medium">Un equipo con mantenimiento profesional <span class="text-[#1e73be] font-bold">cada 3 a 6 meses</span> asegura el ahorro calculado.</p>
                 </div>
             </div>
             <div class="bg-white p-8 rounded-3xl border border-slate-100 flex flex-col items-center gap-4 shadow-sm">
                 <h4 class="font-bold text-slate-900 tracking-tight text-center">¿Desea una asesoría personalizada?</h4>
-                <a id="main-whatsapp" href="#" target="_blank" class="w-full bg-[#1e73be] text-white py-4 rounded-full font-bold text-sm flex items-center justify-center gap-2 hover:scale-[1.02] transition-all">
-                    Consultar con Experto <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                <p class="text-xs text-slate-500 font-medium text-center">Nuestros expertos le contactarán para validar su espacio y brindarle la mejor oferta.</p>
+                <a id="main-whatsapp" href="#" target="_blank" class="w-full bg-[#1e73be] text-white py-4 rounded-full font-bold text-sm flex items-center justify-center gap-3 hover:scale-[1.02] transition-all shadow-xl shadow-blue-100">
+                    Hablar con un Experto <i data-lucide="message-circle" class="w-5 h-5"></i>
                 </a>
             </div>
         </div>
@@ -146,7 +147,7 @@
 
         <footer class="text-center pt-8 border-t border-slate-100 space-y-4">
             <img src="14.png" alt="Eco Ingeniería" class="h-8 mx-auto grayscale opacity-40">
-            <p class="text-[9px] font-bold text-slate-400 uppercase tracking-[0.4em]">© Eco Ingeniería Costa Rica | Climatización Profesional</p>
+            <p class="text-[9px] font-bold text-slate-400 uppercase tracking-[0.4em]">© ECO INGENIERÍA COSTA RICA | CLIMATIZACIÓN Y ENERGÍA SOLAR PROFESIONAL</p>
         </footer>
     </main>
 
@@ -172,7 +173,6 @@
             roomSizeVal.innerText = `${roomSize} m²`;
             usageHoursVal.innerText = `${usageHours} h`;
 
-            // Lógica ajustada a mínimo de 5m2
             let btu = 12000;
             if (roomSize <= 16) btu = 12000;
             else if (roomSize <= 24) btu = 18000;
@@ -202,8 +202,8 @@
             savingYearlyDisplay.innerText = `₡${savingYearly.toLocaleString('es-CR')}`;
             percentDisplay.innerText = `${percent}%`;
 
-            // MENSAJE DINÁMICO MEJORADO
-            const baseMsg = `Hola Eco ingeniería CR, usé la calculadora para un área de ${roomSize}m². Me gustaría cotizar el equipo con la recomendación de ${btuFormatted} BTU.`;
+            // Mensaje Dinámico Detallado
+            const baseMsg = `Hola Eco ingeniería CR, usé la calculadora para un área de ${roomSize}m². Me gustaría recibir una asesoría personalizada para el equipo recomendado de ${btuFormatted} BTU.`;
             const encodedMsg = encodeURIComponent(baseMsg);
             const whatsappUrl = `https://wa.me/50670320662?text=${encodedMsg}`;
             
